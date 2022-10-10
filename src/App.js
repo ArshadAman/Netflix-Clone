@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import {useDispatch, useSelector} from 'react-redux';
 
 import HomeScreen from "./screens/HomeScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import LoginScreen from "./screens/LoginScreen";
 import { auth } from "./firebase";
 import { login, logout, selectUser } from "./features/counter/userSlice";
@@ -26,13 +27,13 @@ function App() {
         }
         else{
           // Not Logged in
-          dispatch(logout);
+          dispatch(logout());
         }
 
 
         return unsubscribe;
       })
-    }, [])
+    }, [dispatch])
 
 
   return (
@@ -42,7 +43,10 @@ function App() {
           <LoginScreen />
         ) : (
           <Switch>
-            <Route path="/">
+            <Route path="/profile">
+              <ProfileScreen />
+            </Route>
+            <Route exact path="/">
               <HomeScreen />
             </Route>
           </Switch>

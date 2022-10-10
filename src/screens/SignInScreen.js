@@ -6,7 +6,7 @@ import {
 import { auth } from "../firebase";
 import "./SignInScreen.css";
 
-function SignInScreen() {
+function SignInScreen({email = ""}) {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -47,7 +47,7 @@ function SignInScreen() {
     <div className="signupScreen">
       <form>
         <h1>Sign In</h1>
-        <input type="email" placeholder="Email" ref={emailRef} />
+        <input type="email" placeholder="Email" ref={emailRef} value={email} />
         <input type="password" placeholder="Password" ref={passwordRef} />
         <button type="submit" onClick={signIn}>
           Sign In
